@@ -6,10 +6,6 @@ def get_rdd_kv(row):
 
 
 from pyspark import SparkContext,SparkConf
-import os
-
-
-
 
 conf = SparkConf().setMaster('local').setAppName("AvgFriendsByUser")
 sc = SparkContext(conf=conf)
