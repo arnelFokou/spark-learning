@@ -2,7 +2,7 @@ from pyspark import SparkContext, SparkConf
 
 def get_rdd_kv(row):
     row_splitted = row.split(",")
-    user_id = row_splitted[0]
+    user_id = int(row_splitted[0])
     amount = float(row_splitted[2])
     return (user_id,amount)
 
@@ -19,5 +19,5 @@ sorted_kv = input_kv.map(lambda x : (x[1],x[0]) ).sortByKey(ascending=False)
 
 results = sorted_kv.collect()
 
-for user,spent_amount in results:
+for spent_amount, user in results:
     print(f"{user} spent {spent_amount:.2f}$")
